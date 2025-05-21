@@ -36,6 +36,9 @@ int main(int argc, char **argv) {
   else if (strncmp(configuration.command, "first_pixel", 11) == 0) {
     first_pixel(configuration.filenames[0]);
   }
+   else if (strncmp(configuration.command, "second_line", 13) == 0) {
+    second_line(configuration.filenames[0]);
+  }
 
   /*
    * TO COMPLETE
@@ -45,3 +48,4 @@ int main(int argc, char **argv) {
   
   return 0;
 }
+

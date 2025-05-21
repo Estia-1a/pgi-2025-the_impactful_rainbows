@@ -33,6 +33,9 @@ int main(int argc, char **argv) {
   } else if ( strcmp( configuration.command, "dimension") == 0 ) {
     dimension(configuration.filenames[0]);
   }
+  else if ( strcmp( configuration.command, "tenth_pixel") == 0 ) {
+    tenth_pixel(configuration.filenames[0]);
+  }
   /*
    * TO COMPLETE
    */

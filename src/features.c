@@ -113,7 +113,7 @@ void print_pixel(char *source_path, int x, int y) {
     int width, height, channel;
 
     int result = read_image_data(source_path, &data, &width, &height, &channel);
-    if (result = 0 || data == NULL) {
+    if (result == 0 || data == NULL) {
         printf("Error reading image\n");
         return;
     }

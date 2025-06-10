@@ -200,3 +200,35 @@ void min_component(char *source_path, char component) {
         printf("Erreur lors de la lecture de l'image.\n");
     }
 }
+
+void min_pixel(char* filename) {
+    unsigned char* data;
+    int width, height, n;
+ 
+    if (read_image_data(filename, &data, &width, &height, &n) == 0) {
+        printf("Erreur avec le fichier : %s\n", filename);
+        return;
+    }
+ 
+    int min_sum = 255 * 3 + 1;
+    int min_x = 0, min_y = 0;
+    pixelRGB min_pixel;
+ 
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB* p = get_pixel(data, width, height, n, x, y);
+            if (p == NULL) continue;
+ 
+            int sum = p->R + p->G + p->B;
+            if (sum < min_sum) {
+                min_sum = sum;
+                min_x = x;
+                min_y = y;
+                min_pixel = *p;
+            }
+        }
+    }
+ 
+    printf("min_pixel (%d, %d): %d, %d, %d\n", min_x, min_y, min_pixel.R, min_pixel.G, min_pixel.B);
+    free_image_data(data);
+}

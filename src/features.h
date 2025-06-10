@@ -20,5 +20,9 @@ void min_component(char *source_path, char component);
 
 void print_pixel (char *source_path, int x, int y);
 
+void min_pixel(char* filename);
+ 
+ 
+
 #endif
 

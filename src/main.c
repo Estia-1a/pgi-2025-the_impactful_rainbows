@@ -39,15 +39,14 @@ int main(int argc, char **argv) {
    else if (strncmp(configuration.command, "second_line", 13) == 0) {
     second_line(configuration.filenames[0]);
   }
-
   else if ( strcmp( configuration.command, "tenth_pixel") == 0 ) {
     tenth_pixel(configuration.filenames[0]);
   }
-  /*
-   * TO COMPLETE
-   */
-
-  
+  else if ( strcmp( configuration.command, "print_pixel") == 0 ) {
+    int x = atoi(argv[argc - 2]);
+    int y = atoi(argv[argc - 1]);
+    print_pixel(configuration.filenames[0], x, y);
+  }
   
   return 0;
 }

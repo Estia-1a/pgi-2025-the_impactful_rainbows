@@ -39,19 +39,26 @@ int main(int argc, char **argv) {
    else if (strncmp(configuration.command, "second_line", 13) == 0) {
     second_line(configuration.filenames[0]);
   }
-
   else if ( strcmp( configuration.command, "tenth_pixel") == 0 ) {
     tenth_pixel(configuration.filenames[0]);
   }
+
   else if (strcmp(configuration.command, "max_pixel") == 0) {
     max_pixel(configuration.filenames[0]);
   }
-  /*
-   * TO COMPLETE
-   */
 
-  
-  
+  else if ( strcmp( configuration.command, "print_pixel") == 0 ) {
+    int x = atoi(argv[argc - 2]);
+    int y = atoi(argv[argc - 1]);
+    print_pixel(configuration.filenames[0], x, y);
+  }
+  else if ( strcmp(configuration.command, "max_component") == 0 ) {
+    max_component(configuration.filenames[0], configuration.arguments[0][0]);
+  }
+  else if ( strcmp(configuration.command, "min_component") == 0 ) {
+    min_component(configuration.filenames[0], configuration.arguments[0][0]);
+  }
+
+
   return 0;
 }
-

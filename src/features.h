@@ -20,5 +20,9 @@ void min_component(char *source_path, char component);
 void print_pixel (char *source_path, int x, int y);
 >>>>>>> 6d3e311521488f92d3a16f514d92509a25fc22ca
 
+void max_component(char *source_path, char component);
+
+void min_component(char *source_path, char component);
+
 #endif
 

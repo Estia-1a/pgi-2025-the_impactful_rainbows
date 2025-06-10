@@ -64,4 +64,34 @@ void second_line(char *source_path) {
     }
 }
 
-
+void max_pixel(char* filename) {
+    unsigned char* data;
+    int width, height, n;
+ 
+    if (read_image_data(filename, &data, &width, &height, &n) == 0) {
+        printf("Erreur avec le fichier : %s\n", filename);
+        return;
+    }
+ 
+    int max_sum = -1;
+    int max_x = 0, max_y = 0;
+    pixelRGB max_pixel;
+ 
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixelRGB* p = get_pixel(data, width, height, n, x, y);
+            if (p == NULL) continue;
+ 
+            int sum = p->R + p->G + p->B;
+            if (sum > max_sum) {
+                max_sum = sum;
+                max_x = x;
+                max_y = y;
+                max_pixel = *p;
+            }
+        }
+    }
+ 
+    printf("max_pixel (%d, %d): %d, %d, %d\n", max_x, max_y, max_pixel.R, max_pixel.G, max_pixel.B);
+    free_image_data(data);
+}

@@ -107,11 +107,32 @@ void max_component(char *source_path, char component) {
  
 }
 
+<<<<<<< HEAD
 void min_component(char *source_path, char component) {
     int width;
     int height;
     int nbChannels;
     unsigned char *data;
+=======
+void print_pixel(char *source_path, int x, int y) {
+
+    unsigned char* data = NULL;
+    int width, height, channel;
+
+    int result = read_image_data(source_path, &data, &width, &height, &channel);
+    if (result = 0 || data == NULL) {
+        printf("Error reading image\n");
+        return;
+    }
+
+    pixelRGB* px = getPixel(data, width, height, channel, x, y);
+    if (px) {
+        printf("print_pixel (%d, %d): %d, %d, %d\n", x, y, px->R, px->G, px->B);
+    } else {
+        printf("Invalid pixel position (%d, %d)\n", x, y);
+    }
+}
+>>>>>>> 6d3e311521488f92d3a16f514d92509a25fc22ca
 
     if (read_image_data(source_path, &data, &width, &height, &nbChannels)) {
         int min_component_value = 256;

@@ -39,10 +39,10 @@ int main(int argc, char **argv) {
    else if (strncmp(configuration.command, "second_line", 13) == 0) {
     second_line(configuration.filenames[0]);
   }
-
   else if ( strcmp( configuration.command, "tenth_pixel") == 0 ) {
     tenth_pixel(configuration.filenames[0]);
   }
+<<<<<<< HEAD
 
   else if ( strcmp(configuration.command, "max_component") == 0 ) {
     max_component(configuration.filenames[0], configuration.arguments[0][0]);
@@ -57,6 +57,13 @@ int main(int argc, char **argv) {
    */
 
   
+=======
+  else if ( strcmp( configuration.command, "print_pixel") == 0 ) {
+    int x = atoi(argv[argc - 2]);
+    int y = atoi(argv[argc - 1]);
+    print_pixel(configuration.filenames[0], x, y);
+  }
+>>>>>>> 6d3e311521488f92d3a16f514d92509a25fc22ca
   
   return 0;
 }

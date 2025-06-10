@@ -64,5 +64,8 @@ int main(int argc, char **argv) {
   else if (strcmp(configuration.command, "min_pixel") == 0) {
     min_pixel(configuration.filenames[0]);
   }
+  else if (strcmp(configuration.command, "color_bleu") == 0) {
+    color_bleu(configuration.filenames[0]);
+  }
   return 0;
 }

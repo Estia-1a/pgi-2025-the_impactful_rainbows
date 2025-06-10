@@ -157,6 +157,7 @@ void max_pixel(char* filename) {
     printf("max_pixel (%d, %d): %d, %d, %d\n", max_x, max_y, max_pixel.R, max_pixel.G, max_pixel.B);
     free_image_data(data);
 }
+
 void min_component(char *source_path, char component) {
     int width;
     int height;
@@ -200,6 +201,7 @@ void min_component(char *source_path, char component) {
         printf("Erreur lors de la lecture de l'image.\n");
     }
 }
+
 void color_red (char* filenames){
     int width , height, nbChannels;
     unsigned char *data;
@@ -213,6 +215,7 @@ void color_red (char* filenames){
         }
     }
     write_image_data("image_out.bmp", data, width, height);
+}
 
 void min_pixel(char* filename) {
     unsigned char* data;

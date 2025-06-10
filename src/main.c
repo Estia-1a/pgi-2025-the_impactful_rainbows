@@ -42,6 +42,11 @@ int main(int argc, char **argv) {
   else if ( strcmp( configuration.command, "tenth_pixel") == 0 ) {
     tenth_pixel(configuration.filenames[0]);
   }
+
+  else if (strcmp(configuration.command, "max_pixel") == 0) {
+    max_pixel(configuration.filenames[0]);
+  }
+
   else if ( strcmp( configuration.command, "print_pixel") == 0 ) {
     int x = atoi(argv[argc - 2]);
     int y = atoi(argv[argc - 1]);
@@ -55,6 +60,9 @@ int main(int argc, char **argv) {
   }
   else if (strcmp(configuration.command, "color_red") == 0) {
     color_red(configuration.filenames[0]);
+  }
+  else if (strcmp(configuration.command, "min_pixel") == 0) {
+    min_pixel(configuration.filenames[0]);
   }
   return 0;
 }

@@ -26,5 +26,7 @@ void min_pixel(char* filename);
  
 void color_bleu(char *filenames);
 
+void color_green(char *filenames);
+
 #endif
 

@@ -276,3 +276,23 @@ void color_green (char* filenames){
     }
     write_image_data("image_out.bmp", data, width, height);
 }
+void color_gray(char *filename) {
+    unsigned char *data;
+    int i, width, height, channel_count, total_pixels, pixel_start;
+    unsigned char gray_value;
+
+    read_image_data(filename, &data, &width, &height, &channel_count);
+
+    total_pixels = width * height;
+ 
+    for (i = 0; i < total_pixels; i++) {
+        pixel_start = i * channel_count;
+        gray_value = (data[pixel_start] + data[pixel_start + 1] + data[pixel_start + 2]) / 3;
+       
+        data[pixel_start] = gray_value;
+        data[pixel_start + 1] = gray_value;
+        data[pixel_start + 2] = gray_value;
+    }
+    write_image_data("image_out.bmp", data, width, height);
+}
+

@@ -36,5 +36,7 @@ void color_invert(char *filenames);
 
 void color_gray_luminance(char *filenames); 
 
+void mirror_horizontal(char *filenames);
+
 #endif
 

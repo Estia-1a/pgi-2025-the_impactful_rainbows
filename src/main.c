@@ -82,5 +82,8 @@ int main(int argc, char **argv) {
   else if (strcmp(configuration.command, "color_gray_luminance") == 0) {
     color_gray_luminance(configuration.filenames[0]);
   }
+  else if (strcmp(configuration.command, "mirror_horizontal") == 0) {
+    mirror_horizontal(configuration.filenames[0]);
+  }
   return 0;
 }

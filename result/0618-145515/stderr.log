@@ -1,0 +1,12 @@
+/home/runner/work/pgi-2025-the_impactful_rainbows/pgi-2025-the_impactful_rainbows/src/features.c:399:6: error: redefinition of ‘color_gray’
+  399 | void color_gray(char *filename) {
+      |      ^~~~~~~~~~
+/home/runner/work/pgi-2025-the_impactful_rainbows/pgi-2025-the_impactful_rainbows/src/features.c:364:6: note: previous definition of ‘color_gray’ with type ‘void(char *)’
+  364 | void color_gray(char *filename) {
+      |      ^~~~~~~~~~
+gmake[2]: *** [CMakeFiles/freud.dir/build.make:93: CMakeFiles/freud.dir/src/features.c.o] Error 1
+gmake[2]: *** Waiting for unfinished jobs....
+gmake[1]: *** [CMakeFiles/Makefile2:87: CMakeFiles/freud.dir/all] Error 2
+gmake: *** [Makefile:136: all] Error 2
+
+The process '/usr/local/bin/cmake' failed with exit code 2

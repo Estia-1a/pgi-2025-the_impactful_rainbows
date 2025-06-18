@@ -64,8 +64,8 @@ int main(int argc, char **argv) {
   else if (strcmp(configuration.command, "min_pixel") == 0) {
     min_pixel(configuration.filenames[0]);
   }
-  else if (strcmp(configuration.command, "color_bleu") == 0) {
-    color_bleu(configuration.filenames[0]);
+  else if (strcmp(configuration.command, "color_blue") == 0) {
+    color_blue(configuration.filenames[0]);
   }
   else if (strcmp(configuration.command, "color_green") == 0) {
     color_green(configuration.filenames[0]);
@@ -73,6 +73,8 @@ int main(int argc, char **argv) {
   else if (strcmp(configuration.command, "color_gray") == 0) {
     color_gray(configuration.filenames[0]);
   }
- 
+  else if (strcmp(configuration.command, "color_invert") == 0) {
+    color_invert(configuration.filenames[0]);
+  }
   return 0;
 }

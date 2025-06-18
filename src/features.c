@@ -299,23 +299,6 @@ void color_green(char* filename) {
 
     write_image_data("image_out.bmp", data, width, height);
 }
-void color_gray(char *filename) {
-    int width, height, channel_count;
-    unsigned char *data;
-   
-    read_image_data(filename, &data, &width, &height, &channel_count);
-
-    for (int y = 0; y < height; y++) {
-        for (int x = 0; x < width; x++) {
-            pixelRGB* pixel = get_pixel(data, width, height, channel_count, x, y);
-            unsigned char value = (pixel->R + pixel->G + pixel->B)/ 3;
-            pixel->R = value;
-            pixel->G = value;
-            pixel->B = value;
-        }
-    }
-    write_image_data("image_out.bmp", data, width, height);
-}
 
 void color_invert(char* filename) {
     unsigned char *data;

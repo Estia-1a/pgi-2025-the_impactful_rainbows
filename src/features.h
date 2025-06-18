@@ -16,9 +16,11 @@ void max_pixel(char *filename);
 
 void max_component(char *source_path, char component);
 
-void min_component(char *source_path, char component);
-
 void print_pixel (char *source_path, int x, int y);
+
+void rotate_cw (char* source_path);
+
+void rotate_acw (char* source_path);
 
 void color_red(char *filenames);
 

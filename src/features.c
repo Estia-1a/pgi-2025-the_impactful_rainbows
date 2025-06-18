@@ -398,4 +398,24 @@ void color_gray(char *filename) {
     }
     write_image_data("image_out.bmp", data, width, height);
 }
+void color_gray_luminance(char *filename) {
+    unsigned char *data;
+    int i, width, height, channel_count, total_pixels, pixel_start;
+    unsigned char gray_value;
 
+    read_image_data(filename, &data, &width, &height, &channel_count);
+
+    total_pixels = width * height;
+
+    for (i = 0; i < total_pixels; i++) {
+        pixel_start = i * channel_count;
+        
+        gray_value = (0.21 * data[pixel_start] + 0.72 * data[pixel_start + 1] + 0.07 * data[pixel_start + 2]);
+
+        data[pixel_start] = gray_value;     
+        data[pixel_start + 1] = gray_value; 
+        data[pixel_start + 2] = gray_value; 
+    }
+
+    write_image_data("image_out.bmp", data, width, height);
+}

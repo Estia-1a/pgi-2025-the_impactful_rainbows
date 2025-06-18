@@ -34,5 +34,7 @@ void color_gray(char *filenames);
 
 void color_invert(char *filenames);
 
+void color_gray_luminance(char *filenames); 
+
 #endif
 

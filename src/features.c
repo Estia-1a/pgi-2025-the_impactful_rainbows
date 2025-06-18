@@ -441,3 +441,25 @@ void mirror_horizontal(char* filename) {
 
     write_image_data("image_out.bmp", data, width, height);
 }
+
+void mirror_vertical(char* filename) {
+    unsigned char *data;
+    int width, height, channel_count, x, y, i, temp, pixel_top, pixel_bottom;
+
+    read_image_data(filename, &data, &width, &height, &channel_count);
+
+    for (y = 0; y < height / 2; y++) {
+        for (x = 0; x < width; x++) {
+            pixel_top = (y * width + x) * channel_count;
+            pixel_bottom = ((height - 1 - y) * width + x) * channel_count;
+
+            for (i = 0; i < channel_count; i++) {
+                temp = data[pixel_top + i];
+                data[pixel_top + i] = data[pixel_bottom + i];
+                data[pixel_bottom + i] = temp;
+            }
+        }
+    }
+
+    write_image_data("image_out.bmp", data, width, height);
+}

@@ -1,5 +1,6 @@
 #include <estia-image.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "features.h"
 #include "utils.h"
@@ -74,10 +75,9 @@ void max_component(char *source_path, char component) {
         int max_x = 0;
         int max_y = 0;
  
-        int y;
-        int x;
-        for (y = 0; y < height; y++) {
-            for (x = 0; x < width; x++) {
+        
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
                 int pixel_index = (y * width + x) * nbChannels;
                 int R = data[pixel_index];
                 int G = data[pixel_index + 1];
@@ -94,6 +94,7 @@ void max_component(char *source_path, char component) {
                     printf("Option de composante invalide.\n");
                     return;
                 }
+
                 if (component_value > max_component_value) {
                     max_component_value = component_value;
                     max_x = x;
@@ -103,8 +104,10 @@ void max_component(char *source_path, char component) {
         }
  
         printf("max_component %c (%d, %d): %d\n", component, max_x, max_y, max_component_value);
+
+    } else {
+        printf("Erreur lors de la lecture de l'image.\n");
     }
- 
 }
 
 void print_pixel(char *source_path, int x, int y) {
@@ -126,47 +129,66 @@ void print_pixel(char *source_path, int x, int y) {
     }
 }
 
-
-void min_component(char *source_path, char component) {
-    int width;
-    int height;
-    int nbChannels;
-    unsigned char *data;
-
-    if (read_image_data(source_path, &data, &width, &height, &nbChannels)) {
-        int min_component_value = 256;
-        int min_x = 0;
-        int min_y = 0;
-
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                int pixel_index = (y * width + x) * nbChannels;
-                int R = data[pixel_index];
-                int G = data[pixel_index + 1];
-                int B = data[pixel_index + 2];
-                int component_value;
-
-                if (component == 'R' || component == 'r') {
-                    component_value = R;
-                } else if (component == 'G' || component == 'g') {
-                    component_value = G;
-                } else if (component == 'B' || component == 'b') {
-                    component_value = B;
-                } else {
-                    printf("Option de composante invalide.\n");
-                    return;
-                }
-
-                if (component_value < min_component_value) {
-                    min_component_value = component_value;
-                    min_x = x;
-                    min_y = y;
+void rotate_cw(char* source_path) {
+    int width, height, nbChannels;
+    unsigned char *source_data;
+    unsigned char *target_data;
+ 
+    if (read_image_data(source_path, &source_data, &width, &height, &nbChannels)) {
+        target_data = (unsigned char *)malloc(width * height * nbChannels * sizeof(unsigned char));
+ 
+        int target_width = height;
+        int target_height = width;
+ 
+        int y, x;
+        for (y = 0; y < height; y++){
+            for (x = 0; x < width; x++){
+                int source_pixel_index = (y * width + x) * nbChannels;
+                int target_pixel_index = ((x * target_width) + (target_width - 1 - y)) * nbChannels;
+ 
+                target_data[target_pixel_index] = source_data[source_pixel_index];
+                target_data[target_pixel_index + 1] = source_data[source_pixel_index + 1];
+                target_data[target_pixel_index + 2] = source_data[source_pixel_index + 2];
+ 
+                if (nbChannels == 4){
+                    target_data[target_pixel_index +3] = source_data[source_pixel_index + 3];
                 }
             }
         }
-
-        printf("min_component %c (%d, %d): %d\n", component, min_x, min_y, min_component_value);
-    } else {
-        printf("Erreur lors de la lecture de l'image.\n");
+        write_image_data("image_out.bmp", target_data, target_width, target_height);
+ 
+        free(source_data);
+        free(target_data);
+    }
+}
+void rotate_acw(char* source_path) {
+    int width, height, nbChannels;
+    unsigned char* source_data;
+    unsigned char* target_data;
+ 
+    if (read_image_data(source_path, &source_data, &width, &height, &nbChannels)) {
+        target_data = (unsigned char*)malloc(width * height * nbChannels * sizeof(unsigned char));
+        int target_width = height;
+        int target_height = width;
+ 
+        int y, x;
+        for (y = 0; y < height; y++) {
+            for (x = 0; x < width; x++) {
+                int source_pixel_index = (y * width + x) * nbChannels;
+                int target_pixel_index = ((target_height - 1 - x) * target_width + y) * nbChannels;
+ 
+                target_data[target_pixel_index] = source_data[source_pixel_index];
+                target_data[target_pixel_index + 1] = source_data[source_pixel_index + 1];
+                target_data[target_pixel_index + 2] = source_data[source_pixel_index + 2];
+ 
+                if (nbChannels == 4) {
+                    target_data[target_pixel_index + 3] = source_data[source_pixel_index + 3];
+                }
+            }
+        }
+        write_image_data("image_out.bmp", target_data, target_width, target_height);
+ 
+        free(source_data);
+        free(target_data);
     }
 }

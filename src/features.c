@@ -316,3 +316,21 @@ void color_gray(char *filename) {
     }
     write_image_data("image_out.bmp", data, width, height);
 }
+
+void color_invert(char* filename) {
+    unsigned char *data;
+    int i, width, height, channel_count, total_pixels, pixel_start;
+
+    read_image_data(filename, &data, &width, &height, &channel_count);
+
+    total_pixels = width * height;
+
+    for (i = 0; i < total_pixels; i++) {
+        pixel_start = i * channel_count;
+
+        data[pixel_start] = 255 - data[pixel_start];
+        data[pixel_start + 1] = 255 - data[pixel_start + 1];
+        data[pixel_start + 2] = 255 - data[pixel_start + 2];
+    }
+    write_image_data("image_out.bmp", data, width, height);
+}

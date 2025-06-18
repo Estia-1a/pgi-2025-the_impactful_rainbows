@@ -30,5 +30,7 @@ void color_green(char *filenames);
 
 void color_gray(char *filenames);
 
+void color_invert(char *filenames);
+
 #endif
 

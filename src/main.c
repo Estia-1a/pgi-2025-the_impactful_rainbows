@@ -42,6 +42,11 @@ int main(int argc, char **argv) {
   else if ( strcmp( configuration.command, "tenth_pixel") == 0 ) {
     tenth_pixel(configuration.filenames[0]);
   }
+
+  else if (strcmp(configuration.command, "max_pixel") == 0) {
+    max_pixel(configuration.filenames[0]);
+  }
+
   else if ( strcmp( configuration.command, "print_pixel") == 0 ) {
     int x = atoi(argv[argc - 2]);
     int y = atoi(argv[argc - 1]);
@@ -56,5 +61,23 @@ int main(int argc, char **argv) {
   else if (strncmp(configuration.command, "rotate_acw", 10) == 0) {
     rotate_acw(configuration.filenames[0]);
     }
+  else if (strcmp(configuration.command, "color_red") == 0) {
+    color_red(configuration.filenames[0]);
+  }
+  else if (strcmp(configuration.command, "min_pixel") == 0) {
+    min_pixel(configuration.filenames[0]);
+  }
+  else if (strcmp(configuration.command, "color_blue") == 0) {
+    color_blue(configuration.filenames[0]);
+  }
+  else if (strcmp(configuration.command, "color_green") == 0) {
+    color_green(configuration.filenames[0]);
+  }
+  else if (strcmp(configuration.command, "color_gray") == 0) {
+    color_gray(configuration.filenames[0]);
+  }
+  else if (strcmp(configuration.command, "color_invert") == 0) {
+    color_invert(configuration.filenames[0]);
+  }
   return 0;
 }

@@ -458,4 +458,47 @@ void scale_crop(char* filename) {
     
     write_image_data("image_out.bmp", new_data, crop_width, crop_height);
     free(new_data);
+
+void mirror_horizontal(char* filename) {
+    unsigned char *data;
+    int width, height, channel_count, x, y, i, temp, pixel_left, pixel_right;
+
+    read_image_data(filename, &data, &width, &height, &channel_count);
+
+    for (y = 0; y < height; y++) {
+        for (x = 0; x < width / 2; x++) {
+            pixel_left = (y * width + x) * channel_count;
+            pixel_right = (y * width + (width - 1 - x)) * channel_count;
+
+            for (i = 0; i < channel_count; i++) {
+                temp = data[pixel_left + i];
+                data[pixel_left + i] = data[pixel_right + i];
+                data[pixel_right + i] = temp;
+            }
+        }
+    }
+
+    write_image_data("image_out.bmp", data, width, height);
+}
+
+void mirror_vertical(char* filename) {
+    unsigned char *data;
+    int width, height, channel_count, x, y, i, temp, pixel_top, pixel_bottom;
+
+    read_image_data(filename, &data, &width, &height, &channel_count);
+
+    for (y = 0; y < height / 2; y++) {
+        for (x = 0; x < width; x++) {
+            pixel_top = (y * width + x) * channel_count;
+            pixel_bottom = ((height - 1 - y) * width + x) * channel_count;
+
+            for (i = 0; i < channel_count; i++) {
+                temp = data[pixel_top + i];
+                data[pixel_top + i] = data[pixel_bottom + i];
+                data[pixel_bottom + i] = temp;
+            }
+        }
+    }
+
+    write_image_data("image_out.bmp", data, width, height);
 }

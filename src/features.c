@@ -419,3 +419,43 @@ void color_gray_luminance(char *filename) {
 
     write_image_data("image_out.bmp", data, width, height);
 }
+void scale_crop(char* filename) {
+    unsigned char *data, *new_data;
+    int i, j, width, height, channel_count;
+    
+    read_image_data(filename, &data, &width, &height, &channel_count);
+    
+    // Définir les paramètres de crop pour cibler la zone du poteau
+    int crop_width = width / 3;  // 1/3 de la largeur
+    int crop_height = height;    // toute la hauteur
+    int center_x = (width * 3) / 4;  // vers la droite de l'image
+    int center_y = height / 2;       // centre vertical
+    
+    new_data = malloc(crop_width * crop_height * channel_count);
+    
+    int start_x = center_x - crop_width / 2;
+    int start_y = center_y - crop_height / 2;
+    
+    for (i = 0; i < crop_height; i++) {
+        for (j = 0; j < crop_width; j++) {
+            int src_x = start_x + j;
+            int src_y = start_y + i;
+            
+            int new_pixel = (i * crop_width + j) * channel_count;
+            
+            if (src_x >= 0 && src_x < width && src_y >= 0 && src_y < height) {
+                int src_pixel = (src_y * width + src_x) * channel_count;
+                new_data[new_pixel] = data[src_pixel];
+                new_data[new_pixel + 1] = data[src_pixel + 1];
+                new_data[new_pixel + 2] = data[src_pixel + 2];
+            } else {
+                new_data[new_pixel] = 0;
+                new_data[new_pixel + 1] = 0;
+                new_data[new_pixel + 2] = 0;
+            }
+        }
+    }
+    
+    write_image_data("image_out.bmp", new_data, crop_width, crop_height);
+    free(new_data);
+}

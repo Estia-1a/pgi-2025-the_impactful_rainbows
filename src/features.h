@@ -36,5 +36,7 @@ void color_invert(char *filenames);
 
 void color_gray_luminance(char *filenames); 
 
+void scale_crop(char* filename);
+
 #endif
 

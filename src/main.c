@@ -82,5 +82,8 @@ int main(int argc, char **argv) {
   else if (strcmp(configuration.command, "color_gray_luminance") == 0) {
     color_gray_luminance(configuration.filenames[0]);
   }
+  else if (strcmp(configuration.command, "scale_crop") == 0) {
+    scale_crop(configuration.filenames[0]);
+  }
   return 0;
 }
